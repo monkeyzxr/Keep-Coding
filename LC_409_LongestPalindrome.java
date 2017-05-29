@@ -26,7 +26,7 @@ import java.util.Map;
  */
 
 // 方法1：看有多少个对子（打过牌吗，就是看有多少对子），然后看有没有一个单（注意：只需要一个单，放中间就行了）。
-    /*
+
 public class LC_409_LongestPalindrome {
     public static int longestPalindrome(String s) {
         //用hashmap来统计String中char的个数：
@@ -62,11 +62,12 @@ public class LC_409_LongestPalindrome {
         System.out.println(a);
     }
 }
-*/
+
 
 
 
 //方法2；用hashset
+/*
 public class LC_409_LongestPalindrome {
     public static int longestPalindrome(String s) {
         if (s == null || s.length() == 0)
@@ -97,3 +98,4 @@ public class LC_409_LongestPalindrome {
         System.out.println(a);
     }
 }
+*/

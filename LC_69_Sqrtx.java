@@ -94,3 +94,33 @@ public class LC_69_Sqrtx {
     }
 
 }
+
+
+/**
+ * http://www.cnblogs.com/grandyang/p/4346413.html
+ * 这道题要求我们求平方根，我们能想到的方法就是算一个候选值的平方，然后和x比较大小，
+ * 为了缩短查找时间，我们采用二分搜索法来找平方根，
+ * 由于求平方的结果会很大，可能会超过int的取值范围，所以我们都用long long来定义变量，这样就不会越界，代码如下：
+
+ 解法一
+
+ 复制代码
+ // Binary Search
+ class Solution {
+ public:
+ int sqrt(int x) {
+ long long left = 0, right = (x / 2) + 1;
+ while (left <= right) {
+ long long mid = (left + right) / 2;
+ long long sq = mid * mid;
+ if (sq == x) return mid;
+ else if (sq < x) left = mid + 1;
+ else right = mid - 1;
+ }
+ return right;
+ }
+ };
+
+ *
+ *
+ */

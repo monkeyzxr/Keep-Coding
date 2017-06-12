@@ -28,5 +28,7 @@ public class LC_231_PowerofTwo {
         System.out.println(isPowerOfTwo(2));
         System.out.println(isPowerOfTwo(128));
         System.out.println(isPowerOfTwo(6));
+        System.out.println(isPowerOfTwo(9));
+
     }
 }

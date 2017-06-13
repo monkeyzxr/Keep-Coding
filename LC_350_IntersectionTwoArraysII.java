@@ -18,6 +18,8 @@ import java.util.*;
  *
  */
 
+
+//类似题： 383
 //http://www.jiuzhang.com/solutions/intersection-of-two-arrays-ii/
     //http://www.programcreek.com/2014/05/leetcode-intersection-of-two-arrays-ii-java/
 //我自己写：

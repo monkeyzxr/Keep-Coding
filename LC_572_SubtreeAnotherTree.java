@@ -86,7 +86,7 @@ public class LC_572_SubtreeAnotherTree {
         if (root1.val != root2.val)
             return false;
         else// 如果两个root都相等，则比较各自的左右子树，一直比较到base case 的null 情况
-            return isSubtree(root1.left, root2.left) && isSubtree(root1.right, root2.right);
+            return isSameTree(root1.left, root2.left) && isSameTree(root1.right, root2.right);
     }
 
     //从s的根结点开始，跟t比较，如果两棵树完全相同，那么返回true，
@@ -99,6 +99,6 @@ public class LC_572_SubtreeAnotherTree {
             return true;
 
         else
-            return isSameTree(s.left, t) || isSameTree(s.right, t);
+            return isSubtree(s.left, t) || isSubtree(s.right, t);
     }
 }

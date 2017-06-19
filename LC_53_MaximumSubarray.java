@@ -105,6 +105,10 @@ public class LC_53_MaximumSubarray {
     //http://www.cnblogs.com/ganganloveu/p/3771408.html
     //http://fisherlei.blogspot.com/2012/12/leetcode-maximum-subarray.html
     //http://www.programcreek.com/2013/02/leetcode-maximum-subarray-java/
+
+
+    //    //http://www.geeksforgeeks.org/?p=576
+
 public class LC_53_MaximumSubarray {
     public static int maxSubArray(int[] nums) {
         int maxSum = nums[0];       //初始化，数组里的第一个数

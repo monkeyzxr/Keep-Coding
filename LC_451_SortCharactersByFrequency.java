@@ -69,6 +69,12 @@ public class LC_451_SortCharactersByFrequency {
                 }
         );
 
+        /*
+        boolean	add(E e)
+                    Ensures that this collection contains the specified element (optional operation).
+        boolean	addAll(Collection<? extends E> c)
+                   Adds all of the elements in the specified collection to this collection (optional operation).
+         */
         pq.addAll(map.entrySet());
 
         StringBuilder sb = new StringBuilder();

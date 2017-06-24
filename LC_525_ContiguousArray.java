@@ -30,11 +30,13 @@ import java.util.Map;
 
     //http://www.cnblogs.com/liujinhong/p/6472580.html
     //http://massivealgorithms.blogspot.com/2017/02/leetcode-525-contiguous-array.html
+
+    //看看第209题，感觉这个不能用滑动窗口的思路
 public class LC_525_ContiguousArray {
     public static int findMaxLength(int[] nums) {
         if (nums == null || nums.length < 2)
             return 0;
-                                                           //  index       0    1   2  3 4 5   6  7   8
+                                                           //  index ：     0    1   2  3 4 5   6  7   8
         for (int i = 0; i < nums.length; i++){   // 0 0 0 1 1 1 0 1 0  ->  -1, -1, -1, 1,1,1, -1, 1, -1
             if (nums[i] == 0)
                 nums[i] = -1;  //0 全部改成-1
@@ -45,7 +47,7 @@ public class LC_525_ContiguousArray {
 
         Map<Integer, Integer> map = new HashMap<>();   // key是当前的sum，value是刚加入的数的index
 
-        map.put(0, -1);  ////?????
+        map.put(0, -1);  //设置sum为0，index为-1。相当设置一个基准。在后面的map里，若又遇见0，则更新index，并更新result。
 
         for (int i  = 0; i < nums.length; i++){
             sum += nums[i];
@@ -54,6 +56,8 @@ public class LC_525_ContiguousArray {
             else
                 map.put(sum, i);  // map(-1, 0) (-2, 1) (-3, 2)
                               // 再加1，sum= -2， map有-2的key， result= 3 - map.get(-2) = 3 - 1 = 2
+                               //再加1， sum= -1， result = 4 - 0 = 4
+                              //再加1，sum = 0， result = 5 - （-1） = 6
 
 
         }

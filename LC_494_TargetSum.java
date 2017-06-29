@@ -45,16 +45,21 @@ in + out = sum
 public class LC_494_TargetSum {
     public static int findTargetSumWays(int[] nums, int S) {
         int sum = 0;
-        for(int i = 0;i < nums.length;i++){
+
+        for(int i = 0; i < nums.length; i++){
             sum += nums[i];
             nums[i] *= 2;
         }
+
         if(sum < S ) return 0;
+
         int target = sum + S;
+
         int[] dp = new int[target+1];
-        dp[0] = 1;
-        for(int i = 0;i < nums.length; i++){
-            for(int j = target;j >= 0;j--){
+        dp[0] = 1;  //能使和为零，只有1种选择方式
+
+        for(int i = 0; i < nums.length; i++){
+            for(int j = target; j >= 0; j--){
                 if(j >= nums[i]){
                     dp[j] += dp[j-nums[i]];
                 }
@@ -80,7 +85,7 @@ https://discuss.leetcode.com/topic/76243/java-15-ms-c-3-ms-o-ns-iterative-dp-sol
         return sum < s || (s + sum) % 2 > 0 ? 0 : subsetSum(nums, (s + sum) >>> 1);
     }
 
-    public int subsetSum(int[] nums, int s) {
+    public int subsetSum(int[] nums, int s) {  //计算有多少方式选择nums，使和为s
         int[] dp = new int[s + 1];
         dp[0] = 1;
         for (int n : nums)

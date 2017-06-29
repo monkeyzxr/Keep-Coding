@@ -50,6 +50,51 @@ dp[j] = dp[j] || dp[j - nums[i]]         (nums[i] <= j <= target)
  */
 
 //http://www.cnblogs.com/grandyang/p/5951422.html
+
+
+    //http://bgmeow.xyz/2017/01/04/LeetCode-416/
+    /*
+    这个方法的关键句就在于 dp[j] = dp[j] || dp[j - nums[i-1]]; 。
+    dp[j] 代表能否组合成和为 j 的结果。
+    对于每一个数字，选择都是两个，放或者不放。
+    所以，如果不放第 i 个数字，那问题就变成了前 i - 1 个数字能否组合成和为 j 的结果；
+    如果放第 i 个数字，那问题就变成了前 i - 1 个数字能否组合成和为 j - nums[i] 的结果。
+    只要这两种情况有一种存在， dp[j] 就成立。
+    另注：本题里因为多加了 dp[0] 所以 dp[i] 其实对应的是 nums[i - 1] 。
+
+    public boolean canPartition(int[] nums) {
+    // 特殊情况
+    if (nums == null || nums.length == 0) {
+        return true;
+    }
+    // 求出总和先
+    int volumn = 0;
+    for (int num : nums) {
+        volumn += num;
+    }
+    // 若为奇数，返回 false
+    if (volumn % 2 != 0) {
+        return false;
+    }
+    volumn /= 2;
+
+    // dp def
+    boolean[] dp = new boolean[volumn + 1];
+
+    // dp init
+    dp[0] = true;
+
+    // dp transition
+    for (int i = 1; i <= nums.length; i++) {
+        for (int j = volumn; j >= nums[i-1]; j--) {
+            dp[j] = dp[j] || dp[j - nums[i-1]];
+        }
+    }
+    return dp[volumn];
+}
+
+     */
+
 public class LC_416_PartitionEqualSubsetSum {
     public static boolean canPartition(int[] nums) {
         int sum = 0;

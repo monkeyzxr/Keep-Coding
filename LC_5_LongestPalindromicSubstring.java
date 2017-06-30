@@ -92,43 +92,48 @@ dp[i, j]  =        1                                           if i == j
            =        s[i] == s[j] && dp[i + 1][j - 1]          if j > i + 1
 */
 
+
+//http://www.cnblogs.com/grandyang/p/4464476.html
+   // http://cwind.iteye.com/blog/2232862
+
+    /*
+    写一双重循环，索引i由字符串尾部向前遍历，索引j由i向后遍历，每次发现回文字符串时设置二维数组相应的值，并比较其长度是否大于当前的maxLen。
+    若大于，则更新用于记录当前最长回文子串起始和终止位置的start和end
+     */
 public class LC_5_LongestPalindromicSubstring {
     public static String longestPalindrome(String s) {
+
         if (s == null || s.length() <= 1)
             return s;
 
-        boolean[][] dp = new boolean[s.length()][s.length()];
-        for (boolean[] row : dp)
-            Arrays.fill(row, false);
+        boolean [][] dp = new boolean[s.length()][s.length()];
+      //  for (boolean[] row : dp)
+       //     Arrays.fill(row,  false);
 
         int left = 0;
         int right = 0;
         int maxLen = 0;
 
-        char[] arr = s.toCharArray();
 
-        for (int i = 0; i < arr.length; i++){
-            for (int j = 0; j < i; j++){
+//下面的2种for循环的方式，都对：
+       // for (int i = s.length()-1; i>=0; i--){ // 外循环从右往左走，循环到更左的时候，可以用到先前dp存的 左 的计算结果。
+        for (int j = 0; j < s.length(); j++){
+         //   for (int j = i; j < s.length(); j++){
+            for (int i = 0; i <= j; i++){
+                if (s.charAt(i) == s.charAt(j) && (j-i <= 2||dp[i+1][j-1])){
+                    dp[i][j] = true;
 
-                if (i == j+1){
-                    dp[j][i] = (arr[i] == arr[j]);
-                }
-                else if (i > j+1){
-                    dp[j][i] = ((arr[j]==arr[i]) && (dp[j+1][i-1]));
-                }
-
-               // dp[j][i] = (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1]));
-                if (dp[j][i] && maxLen < i-j+1){
-                    maxLen = i-j+1;
-                    left = j;
-                    right = i;
+                    if (maxLen < j-i+1){
+                        maxLen = j-i+1;
+                        left = i;
+                        right = j;
+                    }
                 }
             }
-
-            dp[i][i] = true;
         }
 
-        return s.substring(left, right-left+1);
+
+        return s.substring(left, right+1);
 
     }
 

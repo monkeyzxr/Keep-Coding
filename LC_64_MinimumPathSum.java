@@ -6,6 +6,7 @@
  Note: You can only move either down or right at any point in time.
  */
 
+//动态规划
 //设dp[i][j]为从(0,0)到(i,j)的路径和最小值
 //dp[i][j] = MIN(dp[i - 1][j], dp[i][j - 1]) + matrix[i][j]
 
@@ -34,15 +35,22 @@ public class LC_64_MinimumPathSum {
 
         for (int i = 1; i < m ; i ++){
             for (int j = 1; j < n; j++){
-                dp[i][j] = Math.min(dp[[i-1]])
+                sum[i][j] = Math.min(sum[i-1][j], sum[i][j-1]) + grid[i][j];
             }
         }
 
-
+        return sum[m-1][n-1];
 
     }
 
     public static void main(String[] args) {
+        int[][] grid = {
+                {1,2,3,4},
+                {2,3,4,5},
+                {3,4,5,6}
+        };
+
+        System.out.println(minPathSum(grid));
 
     }
 }

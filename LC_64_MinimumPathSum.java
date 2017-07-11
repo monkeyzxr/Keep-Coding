@@ -45,9 +45,9 @@ public class LC_64_MinimumPathSum {
 
     public static void main(String[] args) {
         int[][] grid = {
-                {1,2,3,4},
-                {2,3,4,5},
-                {3,4,5,6}
+                {11,21,25,34},
+                {2,32,46,5},
+                {30,4,50,6}
         };
 
         System.out.println(minPathSum(grid));

@@ -18,10 +18,10 @@
     //给定数组，求range之内的数组和。
 // 我们可以新建一个dp数组来保存数据，dp[i]表示 0到i-1(index)这i个数的sum，
 // 每次我们就可以在使用O(n)初始化之后，用O(1)的时间得到搜索结果了。
-    /*
+
 public class LC_303_RangeSumQuery_Immutable {
     private int[] sum;
-
+/*
     public  NumArray(int[] nums) {
         sum = new int[nums.length+1];
 
@@ -34,8 +34,15 @@ public class LC_303_RangeSumQuery_Immutable {
         return sum[j+1] - sum[i];
 
     }
+    */
+
+    public static void main(String[] args) {
+
+    }
 }
-*/
+
+
+
 
 /**
  * Your NumArray object will be instantiated and called as such:

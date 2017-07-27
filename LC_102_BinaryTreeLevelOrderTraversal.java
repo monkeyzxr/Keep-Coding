@@ -150,6 +150,7 @@ public class LC_102_BinaryTreeLevelOrderTraversal {
     }
 
     public static void dfs(List<List<Integer>> res, TreeNode root, int level){
+        /*
         if (root == null)
             return;
 
@@ -164,6 +165,19 @@ public class LC_102_BinaryTreeLevelOrderTraversal {
             curr = res.get(level);
             curr.add(root.val);
         }
+
+        dfs(res, root.left, level+1);
+        dfs(res, root.right, level+1);
+        */
+
+        //或者，和637题一样：
+        if (root == null)
+            return;
+
+        if (level >= res.size())         //base
+            res.add(new ArrayList<>());
+        //level想成index
+        res.get(level).add(root.val);
 
         dfs(res, root.left, level+1);
         dfs(res, root.right, level+1);

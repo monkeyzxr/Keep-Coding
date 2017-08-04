@@ -50,7 +50,7 @@ public class LC_34_SearchforaRange {
                 end = mid - 1;
 
             else
-                start = mid =1;
+                start = mid +1;
         }
 
         return result;

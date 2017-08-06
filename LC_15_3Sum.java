@@ -14,8 +14,8 @@ import java.util.List;
 
  A solution set is:
  [
- [-1, 0, 1],
- [-1, -1, 2]
+     [-1, 0, 1],
+     [-1, -1, 2]
  ]
  *
  */
@@ -43,7 +43,7 @@ public class LC_15_3Sum {
 
         Arrays.sort(nums);   // 排序，为了两端两个指针的移动
 
-        for (int i = 0; i < nums.length; i++){  // 这里i<nums.length-2更好
+        for (int i = 0; i < nums.length-2; i++){  // 这里i<nums.length-2更好
             if (i != 0 && nums[i] == nums[i-1])
                 continue;   // 略过重复的数
 

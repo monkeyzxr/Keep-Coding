@@ -66,7 +66,7 @@ public class LC_26_RemoveDuplicatesfromSortedArray {
                nums[p_slow] = nums[p_fast];
            }
        }
-       return p_slow+1;
+       return p_slow+1;  //index是从0开始，所以返回的个数要加1
     }
 
     public static void main(String[] args) {

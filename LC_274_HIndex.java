@@ -75,7 +75,10 @@ public int hIndex(int[] citations) {
 
 
 /*https://www.hrwhisper.me/leetcode-h-index-h-index-ii/
+http://www.cnblogs.com/grandyang/p/4781203.html
 如果是降序排列：
+1、将其发表的所有SCI论文按被引次数从高到低排序；
+2、从前往后查找排序后的列表，直到某篇论文的序号大于该论文被引次数。所得序号减一即为H指数
 
 public:
 	int hIndex(vector<int>& citations) {

@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by monkeyzxr on 2017/8/28.
  *
@@ -27,6 +30,8 @@
 
 //http://blog.csdn.net/DERRANTCM/article/details/47970795
 //对网格每个元素时行深度优先遍，统计岛的数目
+
+    /*
 public class LC_200_NumberofIslands {
     public static int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0)
@@ -77,6 +82,97 @@ public class LC_200_NumberofIslands {
 
     }
 }
+*/
+
+
 
 //BFS方法：
+//BFS: 所谓的一层，是指从起点到这个点的最短距离相同的点属于一层
 //http://www.jiuzhang.com/solutions/number-of-islands/
+//每次都从队列中取出一个点，看这个点的上下左右能不能走，再看有没有走过，没走过且能走就加入进队列，直到走到终点，所谓的一层，是指从起点到这个点的最短距离相同的点属于一层
+
+public class LC_200_NumberofIslands {
+
+    public class Coordinate{  //构建一个坐标的class，相当于一个pair
+        int x, y;
+        public Coordinate(int x, int y){  //1.Constructor name must be same as its class name 2.Constructor must have no explicit return type
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    public void markByBFS(char[][] grid, int x, int y){
+        int[] directionX = {0, 1, -1, 0};
+        int[] directionY = {1, 0, 0, -1};   //X和Y为一组：依次是： （0，1：上） （1，0 ：右）（-1，0： 左）（0，-1： 下）
+
+        Queue<Coordinate> queue = new LinkedList<>();
+        queue.offer(new Coordinate(x, y));
+        grid[x][y] = '0';
+
+        while (!queue.isEmpty()){
+            Coordinate currCoor = queue.poll();
+            for (int i = 0; i < 4; i++){
+                //当前坐标依次向四个方向走，建立新的adjacent坐标
+                Coordinate adjCoor = new Coordinate(currCoor.x+directionX[i], currCoor.y+directionY[i]);
+
+                if (!checkInBound(adjCoor, grid)){
+                    continue;
+                }
+
+                if (grid[adjCoor.x][adjCoor.y] == '1'){
+                    grid[adjCoor.x][adjCoor.y] = '0';  //grid[x][y] == true的时候是岛，grid[x][y] == false的时候是水。
+                                                        //标记成为访问过，就是变成水，之后就不会重复计算了。
+                    queue.offer(adjCoor);
+                }
+
+            }
+        }
+    }
+
+
+    public boolean checkInBound(Coordinate coor, char[][] grid){
+        int n = grid.length;
+        int m = grid[0].length;
+
+        return coor.x >= 0 && coor.x < n && coor.y >= 0 && coor.y < m;
+    }
+
+
+    public  int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+
+        int n = grid.length;
+        int m = grid[0].length;
+        int isIsland = 0;
+
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < m ; j++){
+                if (grid[i][j] == '1'){
+                    markByBFS(grid, i, j);
+                    isIsland++;
+                }
+            }
+        }
+
+        return isIsland;
+
+
+
+    }
+
+
+
+    public static void main(String[] args) {
+        char[][] grid = {
+                {'1','1','0','0','0'},
+                {'1','1','0','0','0'},
+                {'0','0','1','0','0'},
+                {'0','0','0','1','1'}
+        };
+
+        System.out.println(new LC_200_NumberofIslands().numIslands(grid));
+
+    }
+}
